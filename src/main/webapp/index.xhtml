@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head/>
+<h:body>
+    <h2>Companies:</h2>
+    <ol>
+        <ui:repeat value="#{companies.allCompanies}" var="company">
+            <li><h:link value="#{company.name}" outcome="people?companyId=#{company.id}" /></li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <h:inputText value="#{companies.companyToCreate.name}" required="true" />
+        <h:commandButton value="Add new company" actionListener="#{companies.createCompany}" action="index?faces-redirect=true"/>
+    </h:form>
+</h:body>
+</html>
