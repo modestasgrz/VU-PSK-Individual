@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.Map;
 
+import com.example.task1.decorators.Note;
 import lombok.Getter;
 import lombok.Setter;
 import com.example.task1.persistence.PeopleDAO;
@@ -23,6 +24,9 @@ public class PeopleInCompany implements Serializable {
 
     @Inject
     private PeopleDAO peopleDAO;
+
+    @Inject
+    private Note note;
 
     @Getter @Setter
     private Company company;
@@ -45,5 +49,9 @@ public class PeopleInCompany implements Serializable {
     public void createPerson() {
         personToCreate.setCompany(this.company);
         peopleDAO.persist(personToCreate);
+    }
+
+    public String loadNote() {
+        return note.displayNote();
     }
 }

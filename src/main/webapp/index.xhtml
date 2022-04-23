@@ -6,7 +6,9 @@
 >
 <h:head/>
 <h:body>
-    <h2>Companies:</h2>
+    <h2>Companies #{companies.numOfCompanies} :</h2>
+    <h3>Greet Message: #{companies.loadGreetMessage()}</h3>
+    <p>Random Message: #{companies.loadRandomMessage()}</p>
     <ol>
         <ui:repeat value="#{companies.allCompanies}" var="company">
             <li><h:link value="#{company.name}" outcome="people?companyId=#{company.id}" /></li>

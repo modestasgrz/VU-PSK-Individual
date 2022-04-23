@@ -1,6 +1,7 @@
 package com.example.task1.persistence;
 
 import com.example.task1.entities.Company;
+import com.example.task1.exceptions.CompanyNotFoundException;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -27,5 +28,16 @@ public class CompaniesDAO {
 
     public Company findOne(Integer id) {
         return em.find(Company.class, id);
+    }
+
+    public Company findByName(String name) throws CompanyNotFoundException {
+        List<Company> companies = loadAll();
+        for (Company company : companies) {
+            if (company.getName().equals(name)) {
+                return company;
+            }
+        }
+        throw new CompanyNotFoundException("Company was not found in the database. " +
+                "Check if naming is correct");
     }
 }

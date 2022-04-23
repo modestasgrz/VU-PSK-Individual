@@ -10,17 +10,20 @@
     <h2>#{updatePersonDetails.person.name}</h2>
     <h:form>
         <h:outputText value="salary: "/>
-        <h:inputText a:placeholder="enter the value" value="#{updatePersonDetails.person.jerseyNumber}" required="true" />
-        <h:commandButton value="update" action="#{updatePersonDetails.updatePersonJerseyNumber()}">
+        <h:inputText a:placeholder="enter the value" value="#{updatePersonDetails.person.salary}" required="true" />
+        <h:commandButton value="update" action="#{updatePersonDetails.updatePersonSalary()}">
             <f:param name="personId" value="#{updatePersonDetails.person.id}" />
         </h:commandButton>
         <h:outputText value="Value was already modified by other user. If you want to override it - try again" rendered="#{param['error'] == 'optimistic-lock-exception'}" />
     </h:form>
     <h:form>
-        <h:outputText value="#{generatePersonSalary.jerseyGenerationStatus}" />
-        <h:commandButton value="Generate person number?" disabled="#{generatePersonSalary.salaryGenerationRunning}" action="#{generatePersonSalary.generateNewSalary()}">
+        <h:commandButton value="Produce person's quote" disabled="#{produceQuote.quoteProducerRunning}"
+                         actionListener="#{produceQuote.produceQuote}"
+                         action="#{'personDetails?faces-redirect=true&amp;personId='.concat(updatePersonDetails.person.id)}">
             <f:param name="personId" value="#{updatePersonDetails.person.id}" />
         </h:commandButton>
+        <br/>
+        <h:outputText value="#{produceQuote.quoteProductionStatus}" />
     </h:form>
     <h:link outcome="index" value="Back to home page"/>
 </h:body>

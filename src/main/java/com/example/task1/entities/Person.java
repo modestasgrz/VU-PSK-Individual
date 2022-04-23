@@ -5,6 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -28,6 +30,9 @@ public class Person implements Serializable {
     @ManyToOne
     @JoinColumn(name="COMPANY_ID")
     private Company company;
+
+    @ManyToMany(mappedBy = "outsideConnections")
+    private List<Company> otherConnections = new ArrayList<>();
 
     @Version
     @Column(name = "OPT_LOCK_VERSION")

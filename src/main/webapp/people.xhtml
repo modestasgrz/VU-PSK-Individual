@@ -8,18 +8,19 @@
 <h:head/>
 <h:body>
     <h2>Employees in #{peopleInCompany.company.name} company:</h2>
+    <p>Company vision #{peopleInCompany.loadNote()}</p>
     <ol>
         <ui:repeat value="#{peopleInCompany.company.people}" var="person">
             <li>
                 <p>#{person.name} receives #{person.salary}</p>
                 <h:form>
-                <h:commandButton value="Remove person from the company"
-                                 actionListener="#{peopleInCompanyMyBatis.deletePerson(person.id)}"
-                                 action="#{'people?faces-redirect=true&amp;companyId='.concat(peopleInCompany.company.id)}">
-                    <f:param name="companyId" value="#{peopleInCompany.company.id}" />
-                </h:commandButton>
+                    <h:commandButton value="Remove person from the company"
+                                     actionListener="#{peopleInCompanyMyBatis.deletePerson(person.id)}"
+                                     action="#{'people?faces-redirect=true&amp;companyId='.concat(peopleInCompany.company.id)}">
+                        <f:param name="companyId" value="#{peopleInCompany.company.id}" />
+                    </h:commandButton>
+                    <h:link value="Update person details" outcome="personDetails?faces-redirect=true&amp;personId=#{person.id}"/>
                 </h:form>
-                <!--<h:link value="#{person.name} receives #{person.salary}" outcome="personDetails?personId=#{person.id}" />-->
             </li>
         </ui:repeat>
     </ol>

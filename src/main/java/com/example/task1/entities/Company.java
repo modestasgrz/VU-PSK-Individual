@@ -26,6 +26,14 @@ public class Company {
     @OneToMany(mappedBy = "company")
     private List<Person> people = new ArrayList<>();
 
+    @ManyToMany
+    @JoinTable(
+            name="connection",
+            joinColumns = @JoinColumn(name = "company_id"),
+            inverseJoinColumns = @JoinColumn(name = "person_id")
+    )
+    private List<Person> outsideConnections = new ArrayList<>();
+
     public Company(){}
 
     @Override

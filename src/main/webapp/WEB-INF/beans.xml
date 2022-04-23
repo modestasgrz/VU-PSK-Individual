@@ -6,4 +6,16 @@
                       http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
         bean-discovery-mode="annotated">
 
+    <interceptors>
+        <class>com.example.task1.interceptors.Logger</class>
+    </interceptors>
+
+    <decorators>
+        <class>com.example.task1.decorators.VisionDecorator</class>
+    </decorators>
+
+    <alternatives>
+        <class>com.example.task1.alternatives.GreetMessageImpA1</class>
+    </alternatives>
+
 </beans>
