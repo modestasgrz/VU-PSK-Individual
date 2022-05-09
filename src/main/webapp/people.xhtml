@@ -32,6 +32,11 @@
                          action="#{'people?faces-redirect=true&amp;companyId='.concat(peopleInCompany.company.id)}">
                 <f:param name="companyId" value="#{peopleInCompany.company.id}" />
         </h:commandButton>
+        <h:commandButton value="OptLock Exception"
+                         actionListener="#{peopleInCompany.createOptLockException}"
+                         action="#{'people?faces-redirect=true&amp;companyId='.concat(peopleInCompany.company.id)}">
+                <f:param name="companyId" value="#{peopleInCompany.company.id}" />
+        </h:commandButton>
     </h:form>
     <h:link outcome="index" value="Back to companies page"/>
 </h:body>
