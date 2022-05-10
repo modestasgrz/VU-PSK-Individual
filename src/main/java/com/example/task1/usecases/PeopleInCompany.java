@@ -68,29 +68,4 @@ public class PeopleInCompany implements Serializable {
     public String loadNote() {
         return note.displayNote();
     }
-
-    @Transactional
-    public void createOptLockException() {
-        personToCreate.setCompany(this.company);
-        personToCreate.setName("Minerva McGonagall");
-        personToCreate.setSalary(5000.0);
-
-        HttpClient httpClient = HttpClient.newBuilder().build();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/task1/rest/people/"))
-                .POST(HttpRequest.BodyPublishers.ofString("{\n" +
-                        "    \"name\": \"Minerva McGonagall\",\n" +
-                        "    \"salary\": 5000.0,\n" +
-                        "    \"companyName\": \"Company1\"\n" +
-                        "}"))
-                .build();
-        try {
-            HttpResponse<?> response = httpClient.send(request, HttpResponse.BodyHandlers.discarding());
-            System.out.println("Created request with response code: " + response.statusCode());
-        }
-        catch (Exception e) {
-            System.out.println("Exception occured during sending the create person response" + e.getMessage());
-        }
-        peopleDAO.persist(personToCreate);
-    }
 }

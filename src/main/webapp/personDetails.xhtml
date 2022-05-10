@@ -14,6 +14,9 @@
         <h:commandButton value="update" action="#{updatePersonDetails.updatePersonSalary()}">
             <f:param name="personId" value="#{updatePersonDetails.person.id}" />
         </h:commandButton>
+        <h:commandButton value="OptLockException" action="#{updatePersonDetails.createOptLockException()}">
+            <f:param name="personId" value="#{updatePersonDetails.person.id}" />
+        </h:commandButton>
         <h:outputText value="Value was already modified by other user. If you want to override it - try again" rendered="#{param['error'] == 'optimistic-lock-exception'}" />
     </h:form>
     <h:form>
